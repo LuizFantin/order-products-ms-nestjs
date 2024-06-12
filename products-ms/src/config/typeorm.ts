@@ -11,7 +11,7 @@ const config = {
   username: process.env.DATABASE_USERNAME,
   database: process.env.DATABASE_NAME,
   entities: ['dist/**/*.model{.ts,.js}'],
-  migrations: ['dist/migrations/*{.ts,.js}'],
+  migrations: ['dist/common/typeorm/migrations/*{.ts,.js}'],
   synchronize: true,
 };
 
