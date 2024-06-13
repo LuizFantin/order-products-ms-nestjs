@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Body, Controller, Get, Post, Req, Res, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Req, Res, ValidationPipe } from '@nestjs/common';
 import { OrdersService } from '../services/orders.service';
 import { OrdersRepository } from '../../../providers/repositories/typeorm/OrdersRepository';
 import { CreateOrderDTO } from '../dto/createOrder.dto';
@@ -29,9 +29,8 @@ export class OrdersController {
   }
 
   @Get(':id')
-  async getOneById(@Req() req: Request, @Res() res: Response): Promise<Response> {
+  async getOneById(@Req() req: Request, @Res() res: Response, @Param('id') id: number): Promise<Response> {
     try {
-      const id = Number(req.params.id);
       const result = await this.ordersService.getOneById(id);
       return res.status(200).json({ data: result });
     } catch (error: unknown) {

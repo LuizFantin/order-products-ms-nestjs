@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Controller, Get, Req, Res } from '@nestjs/common';
+import { Controller, Get, Param, Req, Res } from '@nestjs/common';
 import { ShippingService } from '../services/shipping.service';
 import { GenericError } from '../../../common/errors/GenericError';
 import { ShippingProvider } from 'src/providers/shipping/ShippingProvider';
@@ -13,9 +13,12 @@ export class ShippingController {
   private readonly shippingService = new ShippingService(this.shippingProvider);
 
   @Get(':customer_cep')
-  async getShipping(@Req() req: Request, @Res() res: Response): Promise<Response> {
+  async getShipping(
+    @Req() req: Request,
+    @Res() res: Response,
+    @Param('customer_cep') customer_cep: string,
+  ): Promise<Response> {
     try {
-      const customer_cep = String(req.params.customer_cep);
       const result = await this.shippingService.getShipping(customer_cep);
       return res.status(200).json({ data: result });
     } catch (error: unknown) {
