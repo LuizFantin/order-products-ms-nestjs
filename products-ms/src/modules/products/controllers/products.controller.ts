@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Post, Put, Req, Res, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Req, Res, ValidationPipe } from '@nestjs/common';
 import { ProductsService } from '../services/products.service';
 import { Request, Response } from 'express';
 import { ProductRepository } from '../../../providers/repositories/typeorm/ProductRepository';
@@ -26,9 +26,8 @@ export class ProductsController {
   }
 
   @Get(':id')
-  async getOneById(@Req() req: Request, @Res() res: Response): Promise<Response> {
+  async getOneById(@Req() req: Request, @Res() res: Response, @Param('id') id: number): Promise<Response> {
     try {
-      const id = Number(req.params.id);
       const result = await this.productsService.getOneById(id);
       return res.status(200).json({ data: result });
     } catch (error: unknown) {
@@ -68,9 +67,8 @@ export class ProductsController {
   }
 
   @Delete(':id')
-  async delete(@Req() req: Request, @Res() res: Response): Promise<Response> {
+  async delete(@Req() req: Request, @Res() res: Response, @Param('id') id: number): Promise<Response> {
     try {
-      const id = Number(req.params.id);
       const result = await this.productsService.delete(id);
       return res.status(200).json({ data: result });
     } catch (error: unknown) {
