@@ -4,6 +4,8 @@ import { IOrdersRepository } from '../interfaces/IOrdersRepository';
 import { CreateOrderDTO } from '../dto/createOrder.dto';
 import { GenericError } from '../../../common/errors/GenericError';
 import { IApiProductsProvider } from '../interfaces/IApiProductsProvider';
+import { Product } from '../models/product.model';
+import { OrderStatus } from 'src/common/const/orderStatus';
 
 @Injectable()
 export class OrdersService {
@@ -27,18 +29,26 @@ export class OrdersService {
   async create(order: CreateOrderDTO): Promise<Order> {
     const product = await this.apiProductsProvider.getProductDetailsById(order.product_id);
     if (!product) {
-      throw new GenericError(422, 'Order not created because product not found');
+      throw new GenericError(422, 'Order was not created because product not found');
     }
 
     if (product.quantity < order.quantity) {
-      throw new GenericError(422, 'Order not created because product has no stock enough');
+      throw new GenericError(422, 'Order was not created because product has no stock enough');
+    }
+
+    const updatedProduct = new Product(product.id, product.name, product.quantity - order.quantity, product.price);
+
+    const resultUpdatedProduct = await this.apiProductsProvider.updateProductInfo(updatedProduct);
+
+    if (!resultUpdatedProduct) {
+      throw new GenericError(422, 'Order was not created because it was not possible to update product stock');
     }
 
     return this.ordersRepository.save({
       ...order,
       product_name: product.name,
       total_value: product.price * order.quantity,
-      status: 'CREATED',
+      status: OrderStatus.CREATED,
     });
   }
 }
