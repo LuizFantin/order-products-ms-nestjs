@@ -3,7 +3,9 @@ import { Controller, Get, Req, Res } from '@nestjs/common';
 import { ShippingService } from '../services/shipping.service';
 import { GenericError } from '../../../common/errors/GenericError';
 import { ShippingProvider } from 'src/providers/shipping/ShippingProvider';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Shipping')
 @Controller('shipping')
 export class ShippingController {
   constructor(private readonly shippingProvider: ShippingProvider) {}

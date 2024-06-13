@@ -5,7 +5,9 @@ import { OrdersRepository } from '../../../providers/repositories/typeorm/Orders
 import { CreateOrderDTO } from '../dto/createOrder.dto';
 import { GenericError } from '../../../common/errors/GenericError';
 import { ApiProductsProvider } from 'src/providers/products_data/ApiProductsProvider';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Orders')
 @Controller('orders')
 export class OrdersController {
   constructor(

@@ -5,7 +5,9 @@ import { ProductRepository } from '../../../providers/repositories/typeorm/Produ
 import { CreateProductDTO } from '../dto/createProduct.dto';
 import { GenericError } from '../../../common/errors/GenericError';
 import { UpdateProductDTO } from '../dto/updateProduct.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Products')
 @Controller('products')
 export class ProductsController {
   constructor(private readonly productRepository: ProductRepository) {}

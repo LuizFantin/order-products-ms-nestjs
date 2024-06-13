@@ -9,7 +9,6 @@ async function bootstrap() {
     .setTitle('Products MS')
     .setDescription('CRUD Products API')
     .setVersion('1.0')
-    .addTag('product')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api-docs', app, document);
