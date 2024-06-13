@@ -5,6 +5,7 @@ import { OrdersModule } from '../orders/orders.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import typeorm from '../../config/typeorm';
+import { ShippingModule } from '../shipping/shipping.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import typeorm from '../../config/typeorm';
       useFactory: async (configService: ConfigService) => configService.get('typeorm'),
     }),
     OrdersModule,
+    ShippingModule,
   ],
   controllers: [AppController],
   providers: [AppService],

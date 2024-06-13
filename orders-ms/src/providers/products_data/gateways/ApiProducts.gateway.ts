@@ -1,4 +1,4 @@
-import { Product } from '../../modules/orders/models/product.model';
+import { Product } from '../../../modules/orders/models/product.model';
 
 export class ApiProductsGateway {
   async getProductById(product_id: number): Promise<Product | null> {

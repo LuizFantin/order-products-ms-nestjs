@@ -1,5 +1,5 @@
 import { Product } from 'src/modules/orders/models/product.model';
-import { ApiProductsGateway } from './ApiProducts.gateway';
+import { ApiProductsGateway } from './gateways/ApiProducts.gateway';
 import { IApiProductsProvider } from '../../modules/orders/interfaces/IApiProductsProvider';
 
 export class ApiProductsProvider implements IApiProductsProvider {
