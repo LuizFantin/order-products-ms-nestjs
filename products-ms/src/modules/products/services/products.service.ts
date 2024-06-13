@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Product } from '../models/product.model';
 import { IProductRepository } from '../interfaces/IProductRepository';
 import { CreateProductDTO } from '../dto/createProduct.dto';
-import { GenericError } from 'src/common/errors/GenericError';
+import { GenericError } from '../../../common/errors/GenericError';
 import { UpdateProductDTO } from '../dto/updateProduct.dto';
 
 @Injectable()

@@ -5,7 +5,13 @@ export class AddProductsTable1718206938271 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
-      `CREATE TABLE \`product\` (\`id\` int NOT NULL AUTO_INCREMENT, \`name\` varchar(255) NOT NULL, \`price\` int NOT NULL, \`quantity\` int NOT NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`,
+      `CREATE TABLE \`product\` (
+      \`id\` int NOT NULL AUTO_INCREMENT, 
+      \`name\` varchar(255) NOT NULL, 
+      \`price\` int NOT NULL, 
+      \`quantity\` int NOT NULL, 
+      PRIMARY KEY (\`id\`)) 
+      ENGINE=InnoDB`,
     );
   }
 

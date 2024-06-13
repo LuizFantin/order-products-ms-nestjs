@@ -1,9 +1,9 @@
 import { Body, Controller, Delete, Get, Post, Put, Req, Res, ValidationPipe } from '@nestjs/common';
 import { ProductsService } from '../services/products.service';
 import { Request, Response } from 'express';
-import { ProductRepository } from 'src/providers/repositories/typeorm/ProductRepository';
+import { ProductRepository } from '../../../providers/repositories/typeorm/ProductRepository';
 import { CreateProductDTO } from '../dto/createProduct.dto';
-import { GenericError } from 'src/common/errors/GenericError';
+import { GenericError } from '../../../common/errors/GenericError';
 import { UpdateProductDTO } from '../dto/updateProduct.dto';
 
 @Controller('products')
