@@ -11,7 +11,6 @@ flowchart LR
     MS2(Products MS)
     db1[(Database 1)]
     Shipping(ShippingProvider)
-    db2[(Database 2)]
     Admin
 
     User -->|Request| Gateway
@@ -20,7 +19,7 @@ flowchart LR
     MS1 <--> |Check Stock - HTTP| MS2
     MS1 <--> |Shipping quote| Shipping
     MS1 -->|Save order| db1
-    MS2 -->|CRUD Products| db2
+    MS2 -->|CRUD Products| db1
 
     Admin --> |CRUD Products| MS2
 ```
