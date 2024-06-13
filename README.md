@@ -1,5 +1,10 @@
 # OrdersMS <-> ProductsMS - System Design
 
+## Swagger Documentation
+To access the Swagger documentation it is necessary to run each MS and access the respective endpoints:
+- Products MS -> http://localhost:3030/api-docs
+- Orders MS -> http://localhost:3000/api-docs
+
 ## Architecture Design
 Project architecture flow and entities
 ```mermaid
