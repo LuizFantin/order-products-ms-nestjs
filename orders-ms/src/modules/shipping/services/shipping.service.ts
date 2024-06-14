@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 import { IShippingProvider } from '../interfaces/IShippingProvider';
-import { GenericError } from 'src/common/errors/GenericError';
+import { GenericError } from '../../../common/errors/GenericError';
 import { Shipping } from '../models/shipping.model';
 
 @Injectable()

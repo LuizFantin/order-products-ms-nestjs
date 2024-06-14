@@ -5,7 +5,7 @@ import { CreateOrderDTO } from '../dto/createOrder.dto';
 import { GenericError } from '../../../common/errors/GenericError';
 import { IApiProductsProvider } from '../interfaces/IApiProductsProvider';
 import { Product } from '../models/product.model';
-import { OrderStatus } from 'src/common/const/orderStatus';
+import { OrderStatus } from '../../../common/const/orderStatus';
 
 @Injectable()
 export class OrdersService {

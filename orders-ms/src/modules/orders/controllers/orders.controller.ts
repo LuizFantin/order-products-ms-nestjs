@@ -4,7 +4,7 @@ import { OrdersService } from '../services/orders.service';
 import { OrdersRepository } from '../../../providers/repositories/typeorm/OrdersRepository';
 import { CreateOrderDTO } from '../dto/createOrder.dto';
 import { GenericError } from '../../../common/errors/GenericError';
-import { ApiProductsProvider } from 'src/providers/products_data/ApiProductsProvider';
+import { ApiProductsProvider } from '../../../providers/products_data/ApiProductsProvider';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Orders')
