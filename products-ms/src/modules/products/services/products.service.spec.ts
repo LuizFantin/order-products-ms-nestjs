@@ -1,4 +1,3 @@
-// product.service.spec.ts
 import { ProductsService } from './products.service';
 import { Product } from '../models/product.model';
 
