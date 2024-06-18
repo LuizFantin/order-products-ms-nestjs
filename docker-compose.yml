@@ -1,0 +1,62 @@
+version: '3.8'
+services:
+  mysql-db:
+    image: mysql:8.0
+    container_name: mysql-db
+    restart: always
+    command: --init-file /data/application/init.sql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: database_hubii
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./init.sql:/data/application/init.sql
+    networks:
+      - app-network
+
+  products-ms:
+    build:
+      context: ./products-ms
+      dockerfile: Dockerfile
+    container_name: products-ms
+    environment: 
+      - DATABASE_HOST=mysql-db
+      - DATABASE_PORT=3306
+      - DATABASE_USERNAME=root
+      - DATABASE_NAME=database_hubii
+    ports:
+      - "3030:3030"
+    depends_on:
+      - mysql-db
+    networks:
+      - app-network
+
+  orders-ms:
+    build:
+      context: ./orders-ms
+      dockerfile: Dockerfile
+    container_name: orders-ms
+    environment:
+      - DATABASE_HOST=mysql-db
+      - DATABASE_PORT=3306
+      - DATABASE_USERNAME=root
+      - DATABASE_NAME=database_hubii
+      - PRODUCTS_API_BASE_URL=http://localhost:3030
+      - SUPER_FRETE_BASE_URL=https://sandbox.superfrete.com/api/v0
+      - SUPER_FRETE_AUTH_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTgxMzczMjAsInN1YiI6IjhqVTF6cjI5alJaS0xLQzRQQVVTOXBOblVySDMifQ.rdNJsUrhPJ_S2OjqCivBVhaiJrv0pryUEq7_lUmKtJU
+      - FROM_CEP=29920000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql-db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
