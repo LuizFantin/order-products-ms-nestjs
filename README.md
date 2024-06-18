@@ -1,5 +1,15 @@
 # OrdersMS <-> ProductsMS - System Design
 
+## Instalation and Running project
+You need to have Docker Compose already installed. On the root of the project (where we have docker-compose.yml) you should run this command:
+```bash
+    docker-compose up --build
+```
+The above command will create 3 containers:
+- MySQL (With the default schema already created) -> PORT 3306
+- Products MS -> http://localhost:3030
+- Orders MS -> http://localhost:3000
+
 ## Swagger Documentation
 To access the Swagger documentation it is necessary to run each MS and access the respective endpoints:
 - Products MS -> http://localhost:3030/api-docs
@@ -14,7 +24,7 @@ flowchart LR
     Gateway(API Gateway)
     MS1(Orders MS)
     MS2(Products MS)
-    db1[(Database 1)]
+    db1[(Database)]
     Shipping(ShippingProvider)
     Admin
 
